@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre los 7 mejores juegos para disfrutar del doblete deportivo">
+    <meta name="theme-color" content="#2196f3">
+    
+    <!-- iOS meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Juegos Doblete">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicon para navegadores tradicionales -->
+    <link rel="icon" type="image/png" href="/icons/icon-192x192.png">
+    
     <title>7 JUEGOS PARA EL DOBLETE</title>
     <link rel="stylesheet" href="css.css">
-    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <h1 class="title">7 JUEGOS PARA EL DOBLETE</h1>
     <img src="images.jpg" alt="Imagen relacionada con juegos" class="main-image">
     <hr>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/3b3LLDZo3xs?si=oIFkc5C7ddDA1vk4" 
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/3b3LLDZo3xs?si=oIFkc5C7ddDA1vk4" 
         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
         encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
     </iframe>
 
-    <script src="sw.js"></script>
     <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('Service Worker registrado correctamente'))
-        .catch(error => console.error('Error al registrar Service Worker:', error));
-    }
-  </script>
+        // Registro del Service Worker con scope correcto
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(registration => {
+                        console.log('ServiceWorker registrado con éxito:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error al registrar ServiceWorker:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
